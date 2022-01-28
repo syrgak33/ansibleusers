@@ -1,1 +1,43 @@
+---
+# Create a group for every user and make that their primary group
+users_create_per_user_group: true
+# If we're not creating a per-user group, then this is the group all users
+# belong to
+users_group: users
+# The default shell for a user if none is specified
+users_default_shell: /bin/bash
+# Create home dirs for new users? Set this to false if you manage home
+# directories in some other way.
+users_create_homedirs: true
 
+# Lists of users to create and delete
+
+users:
+  - username: testuser
+    name: Test User
+    groups: ['engineering']
+    uid: 1018
+    home: /home/testuser
+    profile: |
+      alias ll='ls -lah'
+    ssh_key:
+      - "ssh-rsa AAAAB3N write your own pubkey"
+
+users_deleted: []
+  # - username: testuser
+  #   name: Test 007
+  #   uid: 1018
+
+# list of users to delete
+user_names: []
+  # - 'testuser'
+
+# List of groups to create
+# Example:
+#   groups_to_create:
+#     - name: developers
+#       gid: 10000
+groups_to_create:
+  - name: engineering
+
+authorized_keys_file: ".ssh/authorized_keys"
